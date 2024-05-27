@@ -15,4 +15,10 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+          script: |
+            cd git-actions-repo
+            sh deploy.sh
       - run: echo "🍏 This job's status is ${{ job.status }}."
+          script: |
+            cd git-actions-repo
+            sh deploy.sh
