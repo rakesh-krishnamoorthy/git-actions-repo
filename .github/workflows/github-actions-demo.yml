@@ -14,7 +14,6 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
-      - run: echo ${{ secrets.EC2_SSH_KEY }}
 
       - name: Executing remote SSH commands using SSH key
         uses: appleboy/ssh-action@v0.1.3
