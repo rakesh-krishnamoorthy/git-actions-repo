@@ -23,12 +23,11 @@ jobs:
             
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} &&
+          cd .git-actions-repo/clone_or_pull.sh '
                echo "success" > /tmp/success &&
-               cd ./clone_or_pull.sh
                chmod +x clone_or_pull.sh
-               sh clone_or_pull.sh
-               
+               sh clone_or_pull.sh               
           '
        
          
