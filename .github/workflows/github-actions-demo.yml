@@ -24,7 +24,7 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-               echo "success" > /tmp/success && mkdir rakesh &&
+               echo "success" > /tmp/success &&
                cd git-actions-repo &&
                sh deploy.sh
           '
