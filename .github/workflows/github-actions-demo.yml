@@ -15,12 +15,16 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v2
 
-      - name: Executing remote SSH commands using SSH key
-        uses: appleboy/ssh-action@v0.1.3
-        with:
-          host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            cd git-actions-repo
-            sh deploy.sh
+      - name: Set the ENV variables
+        env:
+            PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+            HOSTNAME: ${{secrets.HOST_DNS }}
+            USER_NAME: ${{secrets.USERNAME }}
+            
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+
+          echo "success" > /tmp/success
+       
+         
