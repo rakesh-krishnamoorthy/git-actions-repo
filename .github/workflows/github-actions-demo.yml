@@ -24,7 +24,7 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} && '
-               echo test > /tmp/test && cd /home/ubuntu/my-repo 
+               echo "test" > /tmp/test 
           '
        
          
